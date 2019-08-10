@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import RightSide from './RightSide';
 import { isAuthenticated } from '../controllers/user';
-import  { getBooks } from '../controllers/book';
+import  { getBooks, getMoreBooks } from '../controllers/book';
 
 class Book extends Component {
     constructor() {
@@ -16,6 +16,28 @@ class Book extends Component {
         const books = await getBooks();
         console.log(books)
         this.setState( {books} );
+    }
+
+    loadMore = async () => {
+        document.getElementById("loadmore").style.display = "none";
+        const lengthBooks = this.state.books.length;
+        getMoreBooks(lengthBooks)
+            .then( res => {
+                if(res.message) {
+                    this.setState( {message: res.message} )
+                } else {
+                    const newBooks = this.state.books;
+                    newBooks.push(...res);
+                    if(newBooks.length === lengthBooks) {
+                        document.getElementById("loadmore").style.display = "none";
+                    } else {
+                        document.getElementById("loadmore").style.display = "block";
+                        this.setState({
+                            books: newBooks
+                        })
+                    }
+                }
+            })
     }
 
     render() {
@@ -70,6 +92,7 @@ class Book extends Component {
                         
                     </tbody>
                 </table>
+                <button id="loadmore" className="btn btn-outline-primary btn-block btn-sm" onClick={this.loadMore}>Load More</button>
             </RightSide>
             
         )

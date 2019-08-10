@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { isAuthenticated } from '../controllers/user'
 
 import "./Header.css";
 
@@ -9,7 +10,19 @@ class Header extends Component {
         return false;
     }
 
+    toggleMenu = () => {
+        const dropdownMenu = document.getElementById("dropdown-menu");
+        const displayD = dropdownMenu.style.display === "block" ? "none" : "block" ;
+        dropdownMenu.style.display = displayD;
+    }
+
+    signOut = () => {
+        localStorage.removeItem("jwt");
+        window.location = "/admin/signin";
+    }
+
     render() {
+        const username = isAuthenticated().user.username;
         return (
             <header className="header">
                 <Link className="logo" to="/admin/">
@@ -23,23 +36,28 @@ class Header extends Component {
                         <span className="icon-bar"></span>
                     </Link>
                     <div className="navbar-right">
-                        <ul className="nav navbar-nav">
-                            <li className="dropdown notifications-menu">
-                                <Link className="dropdown-toggle count-notifications" data-toggle="dropdown"  to="/admin/">
-                                    <i className="glyphicon glyphicon-globe"></i>
-                                </Link>
-                                <ul className="dropdown-menu">
-                                    <li className="header">You don't have any notification</li>
-                                    <li>
-                                        <div className="slimScrollDiv" ><ul className="menu">
-                                            <li className="count-sales-made">
-                                            </li>
-                                        </ul><div className="slimScrollBar" ></div><div className="slimScrollRail"></div></div>
-                                    </li>
-                                    <li className="footer"><Link  to="/admin/">View all</Link></li>
-                                </ul>
-                            </li>
-                        </ul>
+                    <ul className="nav navbar-nav">
+                        <li className="dropdown user user-menu open">
+                            <button onClick={this.toggleMenu} className="dropdown-toggle" data-toggle="dropdown" style={{background: "transparent", "border": "none", cursor: "pointer"}}>
+                                <i className="glyphicon glyphicon-user"></i>
+                                <span>{username} <i className="caret"></i></span>
+                            </button>
+                            <ul id="dropdown-menu" className="dropdown-menu" style={{position: "absolute", left: -172, "display": "none"}}>
+                               
+                                <li className="user-header bg-light-blue">
+                                    <img style={{borderRadius: "50%"}} src="http://i2k.info/public/files/user/maxResizedH9GI.jpg" className="img-circle" alt="User Image" />
+                                    
+                                    <div>
+                                        {username} - Web Developer
+                                        <p>
+                                            <button onClick={this.signOut} style={{border: "none", background: "transparent", cursor: "pointer"}} className="fa fa-sign-out"></button>
+                                        </p>
+                                        {/* <small>Member since Nov. 2017</small> */}
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                     </div>
                 </nav>
             </header>

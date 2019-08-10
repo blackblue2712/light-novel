@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
 import { Link } from 'react-router-dom';
-
+import { isAuthenticated } from '../controllers/user'
 class Sidebar extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -9,6 +9,7 @@ class Sidebar extends Component {
     }
     
     render() {
+        const username = isAuthenticated().user.username;
         return (
             <section className="sidebar leftside">
                 
@@ -17,7 +18,7 @@ class Sidebar extends Component {
                         {/* <img src="" className="img-circle" alt="User Image" /> */}
                     </div>
                     <div className="pull-left info">
-                        <p>Hello, #name</p>
+                        <p style={{color: "white"}}>Hello, {username}</p>
                         <Link to="/admin/"><i className="fa fa-circle text-success"></i> Online</Link>
                     </div>
                 </div>

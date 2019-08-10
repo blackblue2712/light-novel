@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import RightSide from './RightSide';
 import { isAuthenticated } from '../controllers/user';
-import { getCategories } from '../controllers/category';
+import { getCategories, getMoreCategories } from '../controllers/category';
 
 class Category extends Component {
 
     constructor() {
         super();
         this.state = {
+            message: '',
             categories: []
         }
     }
@@ -18,6 +19,28 @@ class Category extends Component {
         const categories = await getCategories();
         console.log("get done !!!");
         this.setState( {categories} );
+    }
+
+    loadMore = async () => {
+        document.getElementById("loadmore").style.display = "none";
+        const lengthCate = this.state.categories.length;
+        getMoreCategories(lengthCate)
+            .then( res => {
+                if(res.message) {
+                    this.setState( {message: res.message} )
+                } else {
+                    const newCategories = this.state.categories;
+                    newCategories.push(...res);
+                    if(newCategories.length === lengthCate) {
+                        document.getElementById("loadmore").style.display = "none";
+                    } else {
+                        document.getElementById("loadmore").style.display = "block";
+                        this.setState({
+                            categories: newCategories
+                        })
+                    }
+                }
+            })
     }
 
     render() {
@@ -69,9 +92,10 @@ class Category extends Component {
                                 </tr>
                             )  
                         })}
-                        
                     </tbody>
+                    
                 </table>
+                <button id="loadmore" className="btn btn-outline-primary btn-block btn-sm" onClick={this.loadMore}>Load More</button>
             </RightSide>
         )
     }

@@ -44,3 +44,20 @@ export const getSingleBook = _id => {
     })
     .catch( err => console.log("ERROR GET SINGLE BOOK", err));
 }
+
+
+export const getMoreBooks = (skipNumber) => {
+    return fetch(`${process.env.REACT_APP_API_URL}/book/get/more`, {
+        method: "POST",
+        headers: {
+            Accept: "Application/json",
+            "Content-Type": "Application/json",
+
+        },
+        body: JSON.stringify({skipNumber})
+    })
+    .then( res => {
+        return res.json()
+    })
+    .catch( err => console.log("ERROR GET MORE BOOKS", err));
+}

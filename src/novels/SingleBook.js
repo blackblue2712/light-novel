@@ -90,11 +90,15 @@ class SingleBook extends Component {
                         <form>
                             <div className="box-body">
                                 <div className="form-group">
-                                    <label htmlFor="category" className="nameBook">{book.name}</label>
+                                    <label htmlFor="category" className="nameBook" 
+                                        style={{textAlign: "center", display: "block"}}
+                                    >
+                                        {book.name}
+                                    </label>
                                     <input id="crawlURL" type="text" className="form-control" placeholder="Enter URL" style={{fontSize: "14px"}}/>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="sliceNumber" className="">Number of pages to crawl from (0 are default)</label>
+                                    <label htmlFor="sliceNumber" className="">Number of pages to crawl from (0 is default)</label>
                                     <input id="sliceNumberFrom" type="number" className="form-control" style={{fontSize: "14px"}}/>
                                 </div>
                                 <div className="form-group">
@@ -112,7 +116,7 @@ class SingleBook extends Component {
 
                     <div className="box-body">
                         <div className="form-group">
-                            <label htmlFor="category" className="nameBook" style={{marginBottom: "1rem"}}>Chapters ({chapters.length})</label>
+                            <label htmlFor="category" className="nameBook" style={{marginBottom: "1rem", textAlign: "center", display: "block"}}>Chapters ({chapters.length})</label>
                             {chapters.map( (ct, index) => {
                                 return <p key={index}>
                                     <Link to={`/admin/chapter/${ct._id}`}>

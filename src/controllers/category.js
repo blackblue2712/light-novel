@@ -17,6 +17,21 @@ export const postAddCate = async (cateInfo, userInfo) => {
 }
 
 export const getCategories = () => {
+    return fetch(`${process.env.REACT_APP_API_URL}/category/get/five`, {
+        method: "GET",
+        headers: {
+            Accept: "Application/json",
+            "Content-Type": "Application/json",
+
+        }
+    })
+    .then( res => {
+        return res.json()
+    })
+    .catch( err => console.log("ERROR GET CATEGORIES", err));
+}
+
+export const getAllCategories = () => {
     return fetch(`${process.env.REACT_APP_API_URL}/category/get/all`, {
         method: "GET",
         headers: {
@@ -29,4 +44,21 @@ export const getCategories = () => {
         return res.json()
     })
     .catch( err => console.log("ERROR GET CATEGORIES", err));
+}
+
+
+export const getMoreCategories = (skipNumber) => {
+    return fetch(`${process.env.REACT_APP_API_URL}/category/get/more`, {
+        method: "POST",
+        headers: {
+            Accept: "Application/json",
+            "Content-Type": "Application/json",
+
+        },
+        body: JSON.stringify({skipNumber})
+    })
+    .then( res => {
+        return res.json()
+    })
+    .catch( err => console.log("ERROR GET MORE CATEGORIES", err));
 }

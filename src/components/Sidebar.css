@@ -4,6 +4,7 @@
     position: fixed;
     top: 50px;
     width: 220px;
+    height: 100%;
 }
 
 .leftside a {

@@ -31,14 +31,13 @@ a.logo {
 }
 
 .sidebar-toggle {
-    margin-top: 8px;
-    margin-right: 0;
-    margin-bottom: 8px;
     margin-left: 5px;
     background-color: transparent;
     background-image: none;
     border: 1px solid transparent;
     border-radius: 0 !important;
+    position: absolute;
+    top: 17px;
 }
 
 .sidebar-toggle .icon-bar {
@@ -50,4 +49,10 @@ a.logo {
     border-radius: 4px;
     background-color: #333333;
     margin-bottom: 4px;
+}
+
+.navbar-right {
+    position: absolute;
+    right: 20px;
+    top: 11px;
 }

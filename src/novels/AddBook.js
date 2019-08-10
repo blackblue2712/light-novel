@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import RightSide from './RightSide';
-import { getCategories } from '../controllers/category';
+import { getAllCategories } from '../controllers/category';
 import { postAddbook } from '../controllers/book'; 
 import { isAuthenticated } from '../controllers/user';
 import Notification from '../components/Notification';
@@ -16,7 +16,7 @@ class AddBook extends Component {
     }
 
     async componentDidMount() {
-        const categories = await getCategories();
+        const categories = await getAllCategories();
         this.setState( {categories} );
     }
 
@@ -30,9 +30,11 @@ class AddBook extends Component {
         const saleOff = document.getElementById("saleOff").value;
         const author = document.getElementById("author").value;
         const datePublished = document.getElementById("datePublished").value;
-        const cateId = document.getElementById("cateId").value;
+        
+        const selected = document.querySelectorAll("#cateId option:checked")
+        const cateId = Array.from(selected).map( el => el.value);
         console.log(name, status, description, special, price, saleOff, author, datePublished, cateId)
-        if(name !== '' && price !== '') {
+        if(name !== '' && price !== '' && cateId.length > 0) {
             const userInfo = isAuthenticated();
             if(!userInfo) window.location = "/admin/signin";
             postAddbook( {name, description, status, special, price, saleOff, author, datePublished, cateId}, userInfo)
@@ -107,7 +109,7 @@ class AddBook extends Component {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="cateId" className="require">Category</label>
-                                    <select id="cateId" className="custom-select">
+                                    <select multiple id="cateId" className="custom-select">
                                         {categories.map( (cate, index) => {
                                             return <option key={index} value={cate._id}>{cate.name}</option>
                                         })}

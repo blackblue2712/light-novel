@@ -10,7 +10,7 @@ window.onload = () => {
     })
 }
 
-class Signin extends Component {
+class Signup extends Component {
     constructor() {
         super();
         this.state = {
@@ -55,7 +55,7 @@ class Signin extends Component {
         if(isSigninSuccess) return <Redirect to="/admin/"/>
         return (
             <div className="wrapper">
-                <div class="box-form">
+                <div className="box-form" style={{width: 500}}>
                     <h2>Login</h2>
                     <form>
                         <div className="inputBox">
@@ -82,4 +82,4 @@ class Signin extends Component {
     }
 }
 
-export default Signin;
+export default Signup;
