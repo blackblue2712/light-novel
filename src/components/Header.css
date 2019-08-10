@@ -1,0 +1,53 @@
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    max-height: 100px;
+    z-index: 1000;
+    align-items: center;
+}
+
+a.logo {
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center;
+    padding: 0 10px;
+    width: 220px;
+    font-family: 'Kaushan Script', cursive;
+    font-weight: 500;
+    height: 50px;
+    display: block;
+    background-color: #333333;
+    color: #f9f9f9;
+    float: left;
+}
+
+.navbar {
+    height: 50px;
+    margin-bottom: 0;
+    box-shadow: none;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-toggle {
+    margin-top: 8px;
+    margin-right: 0;
+    margin-bottom: 8px;
+    margin-left: 5px;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0 !important;
+}
+
+.sidebar-toggle .icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #333333;
+    margin-bottom: 4px;
+}

@@ -1,0 +1,108 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+}
+.box-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 40px;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .8);
+    border-radius: 15px;
+}
+.box-form h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+.box-form .inputBox {
+    position: relative;
+    z-index: 1;
+}
+.box-form .inputBox input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+    letter-spacing: 1px;
+}
+.box-form .inputBox label {
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    pointer-events: none;
+    transition: .5s;
+    letter-spacing: 1px;
+}
+.box-form .inputBox input:valid ~ label,
+.box-form .inputBox input:focus ~ label {
+    top: -18px;
+    left: 0px;
+    font-size: 12px;
+    color: #03a9f4;
+}
+.box-form input[type="submit"] {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #03a9f4;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.box-form:before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px; 
+    width: 50%;
+    height: 100%;
+    background: rgba(225, 225, 225, 0.1);
+}
+.box-form:after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px; 
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, #645f5f, #4d359c);
+    pointer-events: none;
+    animation: animate 10s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        filter: blur(80px) hue-rotate(0deg);
+    }
+    100% {
+        filter: blur(80px) hue-rotate(360deg);
+    }
+}
+.wrapper {
+    position: absolute;
+    width: 100%;
+    background-color: #212020 ;
+}

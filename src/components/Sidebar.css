@@ -1,0 +1,30 @@
+.leftside {
+    background: #333;
+    min-height: 723px;
+    position: fixed;
+    top: 50px;
+    width: 220px;
+}
+
+.leftside a {
+    font: 14px "Source Sans Pro", sans-serif;
+    color: #F6F6F6
+}
+section.sidebar {
+}
+
+@media only screen and (max-width: 992px) {
+    section.sidebar {
+      left: -220px;
+      animation: slideLeft .2s linear;
+    }  
+}
+
+@keyframes slideLeft {
+    0% {
+        left: 0px
+    }
+    100% {
+        left: -220px;
+    }
+}
