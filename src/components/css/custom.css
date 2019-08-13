@@ -120,9 +120,13 @@ ul.paginations{
 #ajaxed_pagination ul li.next {
     padding-left: 8px !important;
 }
-/* aside.right-side{
-    background: ##333333 !important;
-} */
+aside.right-side{
+    /* background: #333333 !important; */
+    /* position: absolute;
+    top: 50px;
+    overflow: hidden !important; */
+    margin-top: 50px;
+}
 
 #ajaxed_pagination ul li a:before {
     margin-top: -22px !important;

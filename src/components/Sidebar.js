@@ -1,14 +1,42 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
-import { Link } from 'react-router-dom';
+import { Link , withRouter } from 'react-router-dom';
 import { isAuthenticated } from '../controllers/user'
 class Sidebar extends Component {
+    constructor() {
+        super();
+        this.state = {
+            isActive: false
+        }
+    }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return false;
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     return false;
+    // }
+
+    componentDidMount() {
+        const path = this.props.location.pathname;
+        const pathActive = path.split("/")[path.split("/").length - 1];
+        const itemActive = document.getElementById(pathActive);
+        if(itemActive) {
+            itemActive.classList.add("active");
+        }
+    }
+
+    componentDidUpdate() {
+        const listLi = Array.from(document.querySelectorAll(".sidebar-menu > li"));
+        listLi.map( li => li.classList.remove("active"));
+
+        const path = this.props.location.pathname;
+        const pathActive = path.split("/")[path.split("/").length - 1];
+        const itemActive = document.getElementById(pathActive);
+        if(itemActive) {
+            itemActive.classList.add("active");
+        }
     }
     
     render() {
+        
         const username = isAuthenticated().user.username;
         return (
             <section className="sidebar leftside">
@@ -24,14 +52,14 @@ class Sidebar extends Component {
                 </div>
                 
                 <ul className="sidebar-menu">
-                    {/* <li className="sidebar-index">
-                        <a href="">
+                    <li className="sidebar-index" id="admin">
+                        <Link to="/admin">
                             <i className="fa fa-dashboard"></i> <span>Dashboard</span>
-                        </a>
+                        </Link>
                     </li>
                     
                     
-                    <li className="treeview sidebar-config">
+                    {/* <li className="treeview sidebar-config">
                         <a href="#">
                             <i className="fa fa-cog"></i> <span>Config</span>
                             <i className="fa fa-angle-left pull-right"></i>
@@ -43,28 +71,28 @@ class Sidebar extends Component {
                     </li> */}
                     
                     
-                    {/* <li className="sidebar-group">
-                        <a href="">
+                    <li className="sidebar-group" id="group">
+                        <Link to="/admin/group">
                             <i className="fa fa-group"></i> <span>Group</span>
-                        </a>
+                        </Link>
                     </li>
 
                     
-                    <li className="sidebar-user">
-                        <a href="">
+                    <li className="sidebar-user" id="user">
+                        <Link to="/admin/user">
                             <i className="fa fa-user"></i> <span>User</span> <small className="badge pull-right bg-red">4</small>
-                        </a>
-                    </li> */}
+                        </Link>
+                    </li>
 
                     
-                    <li className="sidebar-category">
+                    <li className="sidebar-category" id="category">
                         <Link to="/admin/category">
                             <i className="fa fa-suitcase"></i> <span>Category</span>
                         </Link>
                     </li>
 
                     
-                    <li className="sidebar-book">
+                    <li className="sidebar-book" id="book">
                         <Link to="/admin/book">
                             <i className="fa fa-book"></i> <span>Book</span> <small className="badge pull-right bg-green">12</small>
                         </Link>
@@ -100,4 +128,4 @@ class Sidebar extends Component {
     }
 }
 
-export default Sidebar;
+export default withRouter(Sidebar);

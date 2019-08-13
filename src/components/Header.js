@@ -45,7 +45,7 @@ class Header extends Component {
                             <ul id="dropdown-menu" className="dropdown-menu" style={{position: "absolute", left: -172, "display": "none"}}>
                                
                                 <li className="user-header bg-light-blue">
-                                    <img style={{borderRadius: "50%"}} src="http://i2k.info/public/files/user/maxResizedH9GI.jpg" className="img-circle" alt="User Image" />
+                                    <img style={{borderRadius: "50%"}} src="https://res.cloudinary.com/daerg3axr/image/upload/v1556506252/t2kcphlnwggxbizbw0uz.jpg" className="img-circle" alt="User Image" />
                                     
                                     <div>
                                         {username} - Web Developer

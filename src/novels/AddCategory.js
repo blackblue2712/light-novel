@@ -13,6 +13,10 @@ class AddCategory extends Component {
         }
     }
 
+    deleteMessageAfterShow = () => {
+        this.setState( {message: ''});
+    }
+
     handleSubmit = (e) => { 
         e.preventDefault();
         const name = document.getElementById("name").value;
@@ -48,7 +52,7 @@ class AddCategory extends Component {
                 </div>
 
                 <div className="box box-primary" style={{"marginTop":"20px"}}>
-                    <Notification  notification={message} classShow={classShow} />
+                    <Notification  notification={message} classShow={classShow} deleteMessageAfterShow={this.deleteMessageAfterShow} />
                     <div className="col-md-12">
                         <form>
                             <div className="box-body">

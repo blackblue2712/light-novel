@@ -18,6 +18,10 @@ class Book extends Component {
         this.setState( {books} );
     }
 
+    deleteMessageAfterShow = () => {
+        this.setState( {message: ''});
+    }
+
     loadMore = async () => {
         document.getElementById("loadmore").style.display = "none";
         const lengthBooks = this.state.books.length;
@@ -68,6 +72,7 @@ class Book extends Component {
                         <tr>
                             <th scope="col">#</th>
                             <th style={{width: 400}} scope="col">Name</th>
+                            <th scope="col">Edit</th>
                             <th scope="col">Sattus</th>
                             <th scope="col">Price</th>
                             <th scope="col">SaleOff(%)</th>
@@ -81,6 +86,7 @@ class Book extends Component {
                                 <tr key={index}>
                                     <th scope="row">{++index}</th>
                                     <td><Link to={`/admin/book/${book._id}`}>{book.name}</Link></td>
+                                    <td><Link to={`/admin/book/edit/${book._id}`} ><i className="fa fa-pencil"></i></Link></td>
                                     <td>{book.status === 0 ? "Inactive" : "Active"}</td>
                                     <td>{book.price}</td>
                                     <td>{book.saleOff}</td>

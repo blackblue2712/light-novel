@@ -21,6 +21,10 @@ class Category extends Component {
         this.setState( {categories} );
     }
 
+    deleteMessageAfterShow = () => {
+        this.setState( {message: ''});
+    }
+
     loadMore = async () => {
         document.getElementById("loadmore").style.display = "none";
         const lengthCate = this.state.categories.length;

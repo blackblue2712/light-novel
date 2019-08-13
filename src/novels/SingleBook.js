@@ -18,6 +18,10 @@ class SingleBook extends Component {
         }
     }
 
+    deleteMessageAfterShow = () => {
+        this.setState( {message: ''});
+    }
+
     componentDidMount() {
         const bookId = this.props.match.params.bookId;
         getSingleBook(bookId)
@@ -85,7 +89,7 @@ class SingleBook extends Component {
                 </div>
 
                 <div className="box box-primary" style={{"marginTop":"20px"}}>
-                    <Notification  notification={message} classShow={classShow} />
+                    <Notification  notification={message} classShow={classShow} deleteMessageAfterShow={this.deleteMessageAfterShow} />
                     <div className="col-md-12">
                         <form>
                             <div className="box-body">

@@ -4,7 +4,6 @@ export const postAddbook = async (bookInfo, userInfo) => {
         method: "POST",
         headers: {
             Accept: "Application/json",
-            "Content-Type": "Application/json",
             Authorization: `Bearer ${userInfo.token}`
 
         },
@@ -60,4 +59,22 @@ export const getMoreBooks = (skipNumber) => {
         return res.json()
     })
     .catch( err => console.log("ERROR GET MORE BOOKS", err));
+}
+
+export const postUpdateBook = async (bookInfo, userInfo, bookId) => {
+    console.log(bookInfo)
+    console.log(typeof bookInfo)
+    return await fetch(`${process.env.REACT_APP_API_URL}/book/update/${bookId}`, {
+        method: "POST",
+        headers: {
+            Accept: "Application/json",
+            Authorization: `Bearer ${userInfo.token}`
+
+        },
+        body: bookInfo
+    })
+    .then( res => {
+        return res.json()
+    })
+    .catch( err => console.log("ERROR UPDATE BOOK", err));
 }

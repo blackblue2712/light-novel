@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { getSingleChapter } from '../controllers/chapter';
-import { Link } from 'react-router-dom';
 
 class PreviewChapter extends Component {
     constructor() {
@@ -8,6 +7,10 @@ class PreviewChapter extends Component {
         this.state = {
 
         }
+    }
+
+    deleteMessageAfterShow = () => {
+        this.setState( {message: ''});
     }
 
     componentDidMount() {

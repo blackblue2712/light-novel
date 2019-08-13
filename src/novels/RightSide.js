@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class RightSide extends Component {
-
+    
     render() {
         return (
             <aside className="right-side">

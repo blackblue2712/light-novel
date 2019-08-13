@@ -9,6 +9,7 @@ class Notification extends Component {
 
     ani = async () => {
         await setTimeout( () => {
+            this.props.deleteMessageAfterShow();
             const noti = document.getElementById("notification");
             if(noti) {
                 noti.classList.remove("slideup");

@@ -20,6 +20,10 @@ class AddBook extends Component {
         this.setState( {categories} );
     }
 
+    deleteMessageAfterShow = () => {
+        this.setState( {message: ''});
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         const name = document.getElementById("name").value;
@@ -65,7 +69,7 @@ class AddBook extends Component {
                 </div>
 
                 <div className="box box-primary" style={{"marginTop":"20px"}}>
-                    <Notification  notification={message} classShow={classShow} />
+                    <Notification  notification={message} classShow={classShow} deleteMessageAfterShow={this.deleteMessageAfterShow} />
                     <div className="col-md-12">
                         <form>
                             <div className="box-body">
@@ -109,7 +113,7 @@ class AddBook extends Component {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="cateId" className="require">Category</label>
-                                    <select multiple id="cateId" className="custom-select">
+                                    <select multiple id="cateId" className="custom-select" style={{height: 200}}>
                                         {categories.map( (cate, index) => {
                                             return <option key={index} value={cate._id}>{cate.name}</option>
                                         })}

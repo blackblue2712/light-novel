@@ -11,6 +11,15 @@
     font: 14px "Source Sans Pro", sans-serif;
     color: #F6F6F6
 }
+
+.sidebar-menu li.active {
+    background-color: #444444;
+}
+
+.sidebar-menu li.active a {
+    color: #72afd2;
+}
+
 section.sidebar {
 }
 
