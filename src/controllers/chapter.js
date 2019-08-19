@@ -73,3 +73,17 @@ export const getSingleChapter = chapterId => {
     })
     .catch( err => console.log("ERROR GET SINGLE CHAPTER", err));
 }
+
+export const postDeleteChapter = (chapterId, token) => {
+    return fetch(`${process.env.REACT_APP_API_URL}/chapter/delete/${chapterId}`, {
+        method: "DELETE",
+        headers: {
+            Accept: "Application/json",
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .then( res => {
+        return res.json()
+    })
+    .catch( err => console.log("ERROR DELETE CHAPTER", err));
+}

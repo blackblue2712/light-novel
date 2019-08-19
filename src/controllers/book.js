@@ -4,6 +4,7 @@ export const postAddbook = async (bookInfo, userInfo) => {
         method: "POST",
         headers: {
             Accept: "Application/json",
+            "Content-Type": "Application/json",
             Authorization: `Bearer ${userInfo.token}`
 
         },
@@ -77,4 +78,19 @@ export const postUpdateBook = async (bookInfo, userInfo, bookId) => {
         return res.json()
     })
     .catch( err => console.log("ERROR UPDATE BOOK", err));
+}
+
+export const postDeleteBook = (bookId, userInfo) => {
+    return fetch(`${process.env.REACT_APP_API_URL}/book/delete/${bookId}`, {
+        method: "DELETE",
+        headers: {
+            Accept: "Application/json",
+            Authorization: `Bearer ${userInfo.token}`
+
+        }
+    })
+    .then( res => {
+        return res.json()
+    })
+    .catch( err => console.log("ERROR DELETE BOOK", err));
 }

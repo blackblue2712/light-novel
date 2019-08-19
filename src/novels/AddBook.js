@@ -37,8 +37,8 @@ class AddBook extends Component {
         
         const selected = document.querySelectorAll("#cateId option:checked")
         const cateId = Array.from(selected).map( el => el.value);
-        console.log(name, status, description, special, price, saleOff, author, datePublished, cateId)
-        if(name !== '' && price !== '' && cateId.length > 0) {
+        console.log(name, price, status, description, special, saleOff, author, datePublished, cateId)
+        if(name != '' && price != '' && cateId.length > 0) {
             const userInfo = isAuthenticated();
             if(!userInfo) window.location = "/admin/signin";
             postAddbook( {name, description, status, special, price, saleOff, author, datePublished, cateId}, userInfo)

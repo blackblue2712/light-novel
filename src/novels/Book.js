@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import RightSide from './RightSide';
 import { isAuthenticated } from '../controllers/user';
-import  { getBooks, getMoreBooks } from '../controllers/book';
+import  { getBooks, getMoreBooks, postDeleteBook } from '../controllers/book';
 
 class Book extends Component {
     constructor() {
@@ -44,7 +44,21 @@ class Book extends Component {
             })
     }
 
+    deleteBook = (bookId) => {
+        return () => {
+            let checkBeforeDelete = window.confirm("Are you sure to delete this book?");
+            if(checkBeforeDelete) {
+                let userInfo = isAuthenticated().user;
+                postDeleteBook(bookId, userInfo)
+                    .then( (res) => {
+                        console.log(res);
+                    })
+            }
+        }
+    }
+
     render() {
+        console.log(this.props)
         const _id = isAuthenticated().user._id;
         const { books } = this.state;
         if(!_id) window.location = "/admin/signin";
@@ -72,7 +86,7 @@ class Book extends Component {
                         <tr>
                             <th scope="col">#</th>
                             <th style={{width: 400}} scope="col">Name</th>
-                            <th scope="col">Edit</th>
+                            <th style={{width: 100}} scope="col">Edit/Del</th>
                             <th scope="col">Sattus</th>
                             <th scope="col">Price</th>
                             <th scope="col">SaleOff(%)</th>
@@ -86,7 +100,10 @@ class Book extends Component {
                                 <tr key={index}>
                                     <th scope="row">{++index}</th>
                                     <td><Link to={`/admin/book/${book._id}`}>{book.name}</Link></td>
-                                    <td><Link to={`/admin/book/edit/${book._id}`} ><i className="fa fa-pencil"></i></Link></td>
+                                    <td>
+                                        <Link to={`/admin/book/edit/${book._id}`} ><i className="fa fa-pencil"></i></Link>&nbsp;|&nbsp;
+                                        <Link onClick={this.deleteBook(book._id)} to={`/admin/book/`} ><i className="fa fa-minus"></i></Link>
+                                    </td>
                                     <td>{book.status === 0 ? "Inactive" : "Active"}</td>
                                     <td>{book.price}</td>
                                     <td>{book.saleOff}</td>

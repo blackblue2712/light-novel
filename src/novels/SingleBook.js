@@ -4,7 +4,7 @@ import { isAuthenticated } from '../controllers/user';
 import { Link } from 'react-router-dom';
 import RightSide from './RightSide';
 import Notification from '../components/Notification';
-import { crawlChapter, getContentFromCrawlLinks, postAddChapter, getChapters } from '../controllers/chapter';
+import { crawlChapter, getContentFromCrawlLinks, postAddChapter, getChapters, postDeleteChapter } from '../controllers/chapter';
 
 
 class SingleBook extends Component {
@@ -31,9 +31,25 @@ class SingleBook extends Component {
             })
         getChapters(bookId)
             .then( data => {
+                console.log(data)
                 if(data.error) this.setState( {message: data.error})
                 this.setState( {chapters: data, message: `${data.length} chapters loaded`} )
             })
+    }
+
+    deleteChapter = (chapterId) => {
+        return () => {
+            const token = isAuthenticated().token;
+            postDeleteChapter(chapterId, token)
+                .then(res => {
+                    if(res !== undefined) {
+                        document.getElementById(chapterId).style.display = "none";
+                        this.setState( {message: res.message } );
+                    } else {
+                        this.setState( {message: 'Fail to delete chapter!'} )
+                    }
+                })
+        }
     }
 
     handleSubmit = async (e) => {
@@ -122,9 +138,14 @@ class SingleBook extends Component {
                         <div className="form-group">
                             <label htmlFor="category" className="nameBook" style={{marginBottom: "1rem", textAlign: "center", display: "block"}}>Chapters ({chapters.length})</label>
                             {chapters.map( (ct, index) => {
-                                return <p key={index}>
+                                return <p key={index} id={ct._id}>
+                                    <i className="fa fa-pencil" onClick={this.deleteChapter(ct._id)} style={{pointer: "cursor"}}></i>&nbsp;|&nbsp;
                                     <Link to={`/admin/chapter/${ct._id}`}>
-                                        <small><i style={{fontWeight:545, fontFamily: "sans"}}>{ct.chapterNumber}</i></small>
+                                        <small>
+                                            <i style={{fontWeight:545, fontFamily: "sans"}}>
+                                                {ct.chapterNumber}
+                                            </i>
+                                        </small>
                                     </Link>
                                 </p>
                             })}
