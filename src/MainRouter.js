@@ -5,6 +5,7 @@ import PrivateRoute from './auth/PrivateRoute';
 
 import StaticHTML from './components/StaticHTML';
 import Category from './novels/Category';
+import SingleCategory from './novels/SingleCategory';
 import AddCategory from './novels/AddCategory';
 import Book from './novels/Book';
 import AddBook from './novels/AddBook';
@@ -34,6 +35,7 @@ const MainRouter = () => (
             <PrivateRoute exact path="/admin/group/:groupId" component={SingleGroup}></PrivateRoute>
 
             <PrivateRoute exact path="/admin/category" component={Category}></PrivateRoute>
+            <PrivateRoute exact path="/admin/category/edit/:cateId" component={SingleCategory}></PrivateRoute>
             <PrivateRoute exact path="/admin/category/create/:userId" component={AddCategory}></PrivateRoute>
             
             <PrivateRoute exact path="/admin/book" component={Book}></PrivateRoute>

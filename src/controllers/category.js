@@ -62,3 +62,35 @@ export const getMoreCategories = (skipNumber) => {
     })
     .catch( err => console.log("ERROR GET MORE CATEGORIES", err));
 }
+
+export const getSingleCate = (cateId) => {
+    return fetch(`${process.env.REACT_APP_API_URL}/category/get/${cateId}`, {
+        method: "GET",
+        headers: {
+            Accept: "Application/json",
+            "Content-Type": "Application/json",
+
+        }
+    })
+    .then( res => {
+        return res.json()
+    })
+    .catch( err => console.log("ERROR GET SINGLE CATEGORY", err));
+}
+
+export const postUpdateCategory = (cateInfo, userInfo) => {
+    console.log(userInfo);
+    return fetch(`${process.env.REACT_APP_API_URL}/category/update/${cateInfo._id}`, {
+        method: "POST",
+        headers: {
+            Accept: "Application/json",
+            "Content-Type": "Application/json",
+            Authorization: `Bearer ${userInfo.token}`
+        },
+        body: JSON.stringify(cateInfo)
+    })
+    .then( res => {
+        return res.json()
+    })
+    .catch( err => console.log("ERROR GET SINGLE CATEGORY", err));
+}

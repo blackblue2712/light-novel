@@ -25,6 +25,12 @@ class Category extends Component {
         this.setState( {message: ''});
     }
 
+    deleteCategory = (cateId) => {
+        return () => {
+            
+        }
+    }
+
     loadMore = async () => {
         document.getElementById("loadmore").style.display = "none";
         const lengthCate = this.state.categories.length;
@@ -79,6 +85,7 @@ class Category extends Component {
                         <tr>
                             <th scope="col">#</th>
                             <th style={{width: 200}} scope="col">Name</th>
+                            <th style={{width: 100}} scope="col">Edit/Del</th>
                             <th scope="col">Description</th>
                             <th scope="col">Sattus</th>
                             <th scope="col">Created</th>
@@ -90,6 +97,10 @@ class Category extends Component {
                                 <tr key={index}>
                                     <th scope="row">{++index}</th>
                                     <td>{cate.name}</td>
+                                    <td>
+                                        <Link to={`/admin/category/edit/${cate._id}`} ><i className="fa fa-pencil"></i></Link>&nbsp;|&nbsp;
+                                        <Link onClick={this.deleteCategory(cate._id)} to={`/admin/category/`} ><i className="fa fa-minus"></i></Link>
+                                    </td>
                                     <td>{cate.description}</td>
                                     <td>{cate.status === 0 ? "Inactive" : "Active"}</td>
                                     <td>{new Date(cate.created).toLocaleDateString()}</td>
