@@ -76,13 +76,28 @@ export const updateUser = (userInfo, token) => {
         method: "POST",
         headers: {
             Accept: "Application/json",
-            "Content-Type": "Application/json",
             Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify(userInfo)
+        body: userInfo
     })
     .then( res => {
         return res.json()
     })
     .catch( err => console.log("ERROR UPDATE", err));
+}
+
+export const updatePassword = (userId, password, token, userInfo) => {
+    return fetch(`${process.env.REACT_APP_API_URL}/user/update-password/${userId}`, {
+        method: "POST",
+        headers: {
+            Accept: "Application/json",
+            "Content-Type": "Application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({password, userInfo})
+    })
+    .then( res => {
+        return res.json()
+    })
+    .catch( err => console.log("ERROR UPDATE PASSWORD", err));
 }

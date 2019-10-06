@@ -6,6 +6,13 @@ import "./Header.css";
 
 class Header extends Component {
 
+    constructor() {
+        super();
+        this.state = {
+
+        }
+    }
+
     shouldComponentUpdate(nextProps, nextState) {
         return false;
     }
@@ -14,6 +21,22 @@ class Header extends Component {
         const dropdownMenu = document.getElementById("dropdown-menu");
         const displayD = dropdownMenu.style.display === "block" ? "none" : "block" ;
         dropdownMenu.style.display = displayD;
+    }
+
+    showBar = () => {
+        let leftS = document.getElementsByClassName("leftside")[0].style.left;
+        if( leftS === 0 || leftS === "0px") {
+            document.getElementsByClassName("leftside")[0].style.left = "-220px";
+            if(document.getElementsByClassName("right-side")[0]) {
+                document.getElementsByClassName("right-side")[0].style.marginLeft = "0";
+            }
+        } else {
+            document.getElementsByClassName("leftside")[0].style.left = "0";
+            if(document.getElementsByClassName("right-side")[0]) {
+                document.getElementsByClassName("right-side")[0].style.marginLeft = "220px";
+            }
+        }
+
     }
 
     signOut = () => {
@@ -29,12 +52,14 @@ class Header extends Component {
                     Liars Store
                 </Link>
                 <nav className="navbar navbar-static-top" role="navigation">
-                    <Link className="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button"  to="/admin/">
+                    <button className="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button"  style={{cursor: "pointer"}}
+                        onClick={this.showBar}    
+                    >
                         <span className="sr-only">Toggle navigation</span>
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
-                    </Link>
+                    </button>
                     <div className="navbar-right">
                     <ul className="nav navbar-nav">
                         <li className="dropdown user user-menu open">

@@ -1,0 +1,31 @@
+#box-change {
+    display: none;
+}
+
+.show-change-password {
+    animation: showChangePassword 0.5s linear;
+    display: block !important;
+}
+.hide-change-password {
+    display: none;
+}
+
+/* #isChangePassword:checked ~ #box-change {
+    animation: showChangePassword 0.5s linear;
+}
+
+
+#isChangePassword:not(:checked) {
+    opacity: 0;
+} */
+
+
+@keyframes showChangePassword {
+    0% {
+        display: block;
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

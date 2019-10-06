@@ -18,6 +18,7 @@ class SingleBook extends Component {
         }
     }
 
+
     deleteMessageAfterShow = () => {
         this.setState( {message: ''});
     }

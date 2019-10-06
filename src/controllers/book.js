@@ -17,6 +17,7 @@ export const postAddbook = async (bookInfo, userInfo) => {
 }
 
 export const getBooks = () => {
+    console.log(process.env.REACT_APP_API_URL + "/book/get/all")
     return fetch(`${process.env.REACT_APP_API_URL}/book/get/all`, {
         method: "GET",
         headers: {
@@ -63,8 +64,6 @@ export const getMoreBooks = (skipNumber) => {
 }
 
 export const postUpdateBook = async (bookInfo, userInfo, bookId) => {
-    console.log(bookInfo)
-    console.log(typeof bookInfo)
     return await fetch(`${process.env.REACT_APP_API_URL}/book/update/${bookId}`, {
         method: "POST",
         headers: {
